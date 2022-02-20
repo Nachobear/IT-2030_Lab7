@@ -1,0 +1,49 @@
+﻿@{ 
+    string controller = ViewContext.RouteData.Values["controller"].ToString();
+    string action = ViewContext.RouteData.Values["action"].ToString();
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/css/bootstrap.min.css" />
+    <script src="~/lib/jquery/jquery.min.js"></script>
+    <script src="~/lib/popper.js/popper.min.js"></script>
+    <script src="~/lib/bootstrap/js/bootstrap.min.js"></script>
+    <script src="https://kit.fontawesome.com/ef7df1052a.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="~/css/custom.css" />
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand navbar-dark bg-dark fixed-top">
+            <a class="navbar-brand" href="/">My Website</a>
+            
+            <nav class="collapse navbar-collapse" id="navbarSupportedContent">
+                <div class="navbar-nav mr-auto">
+                    <a class="nav-link
+                       @(controller == "Home" && action == "Index" ? "active" : "")"
+                       asp-area=null asp-controller="Home" asp-action="Index">Home</a>
+                    <a class="nav-link
+                       @(controller == "Home" && action == "About" ? "active" : "")"
+                       asp-area=null asp-controller="Home" asp-action="About">About</a>
+                    <a class="nav-link
+                       @(controller == "Home" && action == "Contact" ? "active" : "")"
+                       asp-area=null asp-controller="Home" asp-action="Contact">Contact</a>
+                </div>
+                <div class="navbar-nav navbar-right">
+                    <a class="nav-link"
+                       asp-area="Help" asp-controller="Home" asp-action="Index">Help</a>
+                </div>
+            </nav>
+        </nav>
+        @RenderSection("message", true)
+    </header>
+    
+    <main>
+        @RenderBody()
+    </main>
+</body>
+</html>
